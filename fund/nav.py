@@ -53,10 +53,6 @@ def calculate_daily_nav(fund: FundState, day: DayData) -> NAVResult:
             process_redemption(fund, txn, nav)
 
     # Step 6: Accrue expenses
-    # Expenses are accrued at end of day to capture the full day's
-    # asset base including any subscription/redemption cash flows,
-    # ensuring the expense calculation reflects the actual AUM that
-    # the management fee applies to for the day.
     accrue_expenses(fund, day)
 
     return NAVResult(
