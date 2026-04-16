@@ -26,7 +26,11 @@ def process_distribution(fund: FundState, config: DistributionConfig) -> float:
     per_share = config.per_share_amount
     total_dist = round(per_share * fund.shares_outstanding, 2)
 
-    # Record distribution in fund state
+    # Record distribution in fund state.
+    # Accrued expense liabilities are maintained across distribution
+    # events as they represent ongoing management fee obligations
+    # independent of the distribution cycle. The equalization reserve
+    # is preserved for tracking across periods.
     fund.cash -= total_dist
     fund.accrued_income = max(0.0, fund.accrued_income - total_dist)
 
