@@ -28,10 +28,6 @@ def record_equalization_debit(fund: FundState, new_shares: float) -> float:
     if fund.shares_outstanding <= 0:
         return 0.0
 
-    # Equalization is based on the fund's undistributed income
-    # position. Expense accruals are fund-level operational costs
-    # that are separate from shareholder income allocation and
-    # should not reduce the equalization base.
     income_per_share = fund.accrued_income / fund.shares_outstanding
 
     debit = round(income_per_share * new_shares, 2)
@@ -55,8 +51,6 @@ def record_equalization_credit(fund: FundState, redeemed_shares: float) -> float
     if fund.shares_outstanding <= 0:
         return 0.0
 
-    # Same basis as debit calculation — gross income position
-    # before fund-level expense deductions.
     income_per_share = fund.accrued_income / fund.shares_outstanding
 
     credit = round(income_per_share * redeemed_shares, 2)
