@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fund-nav"
+version = "0.1.0"
+description = "Mutual fund NAV calculator with equalization accounting"
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
